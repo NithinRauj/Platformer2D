@@ -18,6 +18,7 @@ public class Player : MonoBehaviour {
         if ((inputValue=CrossPlatformInputManager.GetAxis("Horizontal")) != 0f)  //Axis value ranges from -1f to 1f and 0 when 
         {                                                                                                                  //stationary 
             Run(inputValue);
+            FlipSprite();
         }
 	}
 
@@ -32,9 +33,9 @@ public class Player : MonoBehaviour {
         bool playerHasHorizontalSpeed = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
         if (playerHasHorizontalSpeed)
         {
-            Vector3 newScale = transform.localScale;
-            newScale.x = -1f;
-            transform.localScale = newScale;
+            transform.localScale = new Vector2(Mathf.Sign(rb.velocity.x), 1f);    //character is flipped as per sign of velocity
         }
     }
+
+
 }
