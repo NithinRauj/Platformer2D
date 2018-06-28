@@ -11,11 +11,14 @@ public class Player : MonoBehaviour {
     float jumpSpeed;
 
     private Rigidbody2D rb;
-    private Animator anim; 
+    private Animator anim;
+    private int layerMask;
+  
 
     void Start () {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        layerMask = LayerMask.GetMask("Ground");     //Got the layer mask for the foreground which is set with layer "Ground"
     }
 	
 	
@@ -37,9 +40,14 @@ public class Player : MonoBehaviour {
 
     void Jump()
     {
-        Vector2 velocityToAdd = new Vector2(0f, jumpSpeed);
-        if(CrossPlatformInputManager.GetButtonDown("Jump"))
-           rb.velocity += velocityToAdd;
+        bool isTouching = GetComponent<CapsuleCollider2D>().IsTouchingLayers(layerMask);  //Checking wether player's collider
+                                                                                                                                              //is touching the foreground
+          if (isTouching)
+        {
+            Vector2 velocityToAdd = new Vector2(0f, jumpSpeed);
+            if (CrossPlatformInputManager.GetButtonDown("Jump"))
+                rb.velocity += velocityToAdd;
+        }
     }
 
     void FlipSprite()
@@ -51,5 +59,6 @@ public class Player : MonoBehaviour {
         }
     }
 
+   
 
 }
