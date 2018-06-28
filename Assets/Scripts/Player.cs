@@ -9,16 +9,22 @@ public class Player : MonoBehaviour {
      float runSpeed;
     [SerializeField]
     float jumpSpeed;
+    [SerializeField]
+    float climbSpeed;
 
     private Rigidbody2D rb;
     private Animator anim;
-    private int layerMask;
-  
+    private int layerMask,ladderMask;
+    private float initialGravity;
+
+
 
     void Start () {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         layerMask = LayerMask.GetMask("Ground");     //Got the layer mask for the foreground which is set with layer "Ground"
+        ladderMask = LayerMask.GetMask("Ladder");
+        initialGravity = rb.gravityScale;
     }
 	
 	
@@ -26,6 +32,7 @@ public class Player : MonoBehaviour {
         Run();
         Jump();
         FlipSprite();
+        ClimbLadder();
 	}
 
     void Run()
@@ -33,7 +40,6 @@ public class Player : MonoBehaviour {
         float inputValue = CrossPlatformInputManager.GetAxis("Horizontal");
         Vector2 playerVelocity = new Vector2(inputValue * runSpeed, rb.velocity.y);
         rb.velocity = playerVelocity;
-        Debug.Log(rb.velocity);
         bool isPlayerRunning = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
         anim.SetBool("isRunning", isPlayerRunning);
     }
@@ -57,6 +63,23 @@ public class Player : MonoBehaviour {
         {
             transform.localScale = new Vector2(Mathf.Sign(rb.velocity.x), 1f);    //character is flipped as per sign of velocity
         }
+    }
+
+    void ClimbLadder()
+    {
+        bool touchingLadder = GetComponent<CapsuleCollider2D>().IsTouchingLayers(ladderMask);
+        if (!touchingLadder)
+        {
+            anim.SetBool("isClimbing", false);
+            rb.gravityScale = initialGravity;
+            return;
+        }
+        float inputValue = CrossPlatformInputManager.GetAxis("Vertical");
+        Vector2 climbVelocity = new Vector2(rb.velocity.x, climbSpeed*inputValue);
+        rb.gravityScale = 0f;
+        rb.velocity = climbVelocity;
+        anim.SetBool("isClimbing", true);
+       
     }
 
    
