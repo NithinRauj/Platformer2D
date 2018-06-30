@@ -14,17 +14,21 @@ public class Player : MonoBehaviour {
 
     private Rigidbody2D rb;
     private Animator anim;
-    private int layerMask,ladderMask;
+    private int groundLayer,ladderMask;
     private float initialGravity;
+    private BoxCollider2D feetCollider;
+    private CapsuleCollider2D bodyCollider;
 
 
 
     void Start () {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        layerMask = LayerMask.GetMask("Ground");     //Got the layer mask for the foreground which is set with layer "Ground"
+        groundLayer = LayerMask.GetMask("Ground");     //Got the layer mask for the foreground which is set with layer "Ground"
         ladderMask = LayerMask.GetMask("Ladder");
         initialGravity = rb.gravityScale;
+        feetCollider = GetComponent<BoxCollider2D>();
+        bodyCollider = GetComponent<CapsuleCollider2D>();
     }
 	
 	
@@ -46,9 +50,9 @@ public class Player : MonoBehaviour {
 
     void Jump()
     {
-        bool isTouching = GetComponent<CapsuleCollider2D>().IsTouchingLayers(layerMask);  //Checking wether player's collider
+        bool isTouchingGround = feetCollider.IsTouchingLayers(groundLayer);  //Checking wether player's collider
                                                                                                                                               //is touching the foreground
-          if (isTouching)
+          if (isTouchingGround)
         {
             Vector2 velocityToAdd = new Vector2(0f, jumpSpeed);
             if (CrossPlatformInputManager.GetButtonDown("Jump"))
@@ -67,7 +71,7 @@ public class Player : MonoBehaviour {
 
     void ClimbLadder()
     {
-        bool touchingLadder = GetComponent<CapsuleCollider2D>().IsTouchingLayers(ladderMask);
+        bool touchingLadder = feetCollider.IsTouchingLayers(ladderMask);
         if (!touchingLadder)
         {
             anim.SetBool("isClimbing", false);
@@ -81,7 +85,5 @@ public class Player : MonoBehaviour {
         anim.SetBool("isClimbing", true);
        
     }
-
-   
 
 }
