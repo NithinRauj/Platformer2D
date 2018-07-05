@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameSession : MonoBehaviour {
 
-    [SerializeField] int playerLives = 2;
+    [SerializeField] int playerLives = 3;
     [SerializeField] int pickupScore = 0;
+
+    [SerializeField] Text livesText, scoreText;
 
     private int curSceneIndex;
 
     private void Start()
     {
         curSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        livesText.text = playerLives.ToString();
+        scoreText.text = pickupScore.ToString();
     }
 
     private void Awake()
@@ -24,6 +29,12 @@ public class GameSession : MonoBehaviour {
         }
         else
             DontDestroyOnLoad(gameObject);
+    }
+
+    public void ScoreUpdate(int scoreToAdd)
+    {
+        pickupScore += scoreToAdd;
+        scoreText.text = pickupScore.ToString();
     }
 
     public void ProcessPlayerDeath()
@@ -42,7 +53,9 @@ public class GameSession : MonoBehaviour {
     {
         playerLives -= 1;
         SceneManager.LoadScene(curSceneIndex);
+        livesText.text = playerLives.ToString();
     }
+
     void RestartGameSession()
     {
         SceneManager.LoadScene(0);

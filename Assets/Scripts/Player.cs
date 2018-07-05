@@ -5,12 +5,9 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour {
 
-    [SerializeField]
-     float runSpeed;
-    [SerializeField]
-    float jumpSpeed;
-    [SerializeField]
-    float climbSpeed;
+    [SerializeField]float runSpeed;
+    [SerializeField] float jumpSpeed;
+    [SerializeField] float climbSpeed;
     [SerializeField] Vector2 deathVelocity;
 
     private Rigidbody2D rb;
@@ -44,7 +41,6 @@ public class Player : MonoBehaviour {
         FlipSprite();
         ClimbLadder();
         CheckIfDead();
-        Pickup();
 	}
 
     void Run()
@@ -103,13 +99,5 @@ public class Player : MonoBehaviour {
             anim.SetTrigger("DeathTrigger");
             FindObjectOfType<GameSession>().ProcessPlayerDeath();
         }
-    }
-
-    public void Pickup()
-    {
-        //if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Interactables")))
-        //{
-
-        //}
     }
 }
