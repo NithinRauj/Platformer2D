@@ -100,6 +100,7 @@ public class Player : MonoBehaviour {
             isAlive = false;
             rb.velocity = deathVelocity;
             anim.SetTrigger("DeathTrigger");
+            FindObjectOfType<GameSession>().ProcessPlayerDeath();
         }
     }
 
