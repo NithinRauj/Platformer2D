@@ -44,6 +44,7 @@ public class Player : MonoBehaviour {
         FlipSprite();
         ClimbLadder();
         CheckIfDead();
+        Pickup();
 	}
 
     void Run()
@@ -104,4 +105,11 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public void Pickup()
+    {
+        //if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Interactables")))
+        //{
+
+        //}
+    }
 }

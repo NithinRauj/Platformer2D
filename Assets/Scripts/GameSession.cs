@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameSession : MonoBehaviour {
 
     [SerializeField] int playerLives = 2;
+    [SerializeField] int pickupScore = 0;
 
     private int curSceneIndex;
 
