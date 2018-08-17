@@ -55,7 +55,7 @@ public class Player : MonoBehaviour {
     void Jump()
     {
         bool isTouchingGround = feetCollider.IsTouchingLayers(groundLayer);  //Checking wether player's collider
-                                                                                                                                              //is touching the foreground
+                                                                            //is touching the foreground
           if (isTouchingGround)
         {
             Vector2 velocityToAdd = new Vector2(0f, jumpSpeed);
