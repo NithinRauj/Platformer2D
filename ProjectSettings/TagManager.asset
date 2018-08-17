@@ -21,7 +21,7 @@ TagManager:
   - Enemy
   - Hazards
   - Interactables
-  - 
+  - WaterTable
   - 
   - 
   - 
@@ -62,4 +62,7 @@ TagManager:
     locked: 0
   - name: Hazards
     uniqueID: 3339989951
+    locked: 0
+  - name: Water
+    uniqueID: 575339719
     locked: 0

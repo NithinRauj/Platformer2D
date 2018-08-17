@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class GameSession : MonoBehaviour {
 
+    private Player player;
     [SerializeField] int playerLives = 3;
     [SerializeField] int pickupScore = 0;
 
@@ -37,10 +38,13 @@ public class GameSession : MonoBehaviour {
         scoreText.text = pickupScore.ToString();
     }
 
-    public void ProcessPlayerDeath()
+    public void ProcessPlayerDeath(bool hasDrowned)
     {
-        if (playerLives > 1)
+        if (playerLives > 1 && !hasDrowned)
         {
+            TakeLife();
+        }
+        if(hasDrowned){
             TakeLife();
         }
         else
@@ -55,7 +59,6 @@ public class GameSession : MonoBehaviour {
         SceneManager.LoadScene(curSceneIndex);
         livesText.text = playerLives.ToString();
     }
-
     void RestartGameSession()
     {
         SceneManager.LoadScene(0);
