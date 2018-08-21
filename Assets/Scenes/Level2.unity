@@ -249,19 +249,19 @@ Prefab:
     - target: {fileID: 20568105933941580, guid: 6df9c514b39ef4244b1f2689f8bba0e0,
         type: 2}
       propertyPath: orthographic size
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4489128352950222, guid: 6df9c514b39ef4244b1f2689f8bba0e0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -74
+      value: -13.200001
       objectReference: {fileID: 0}
     - target: {fileID: 4489128352950222, guid: 6df9c514b39ef4244b1f2689f8bba0e0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.66
       objectReference: {fileID: 0}
     - target: {fileID: 4489128352950222, guid: 6df9c514b39ef4244b1f2689f8bba0e0, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 1154073028195156, guid: 6df9c514b39ef4244b1f2689f8bba0e0, type: 2}
       propertyPath: m_IsActive
@@ -292,11 +292,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4809628329364540, guid: 3c0849cbe88becc409709f649c6cde51, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 83.09733
+      value: 62.23
       objectReference: {fileID: 0}
     - target: {fileID: 4809628329364540, guid: 3c0849cbe88becc409709f649c6cde51, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.1055675
+      value: -0.05
       objectReference: {fileID: 0}
     - target: {fileID: 4809628329364540, guid: 3c0849cbe88becc409709f649c6cde51, type: 2}
       propertyPath: m_LocalPosition.z
@@ -388,7 +388,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -954977345
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_MaxChunkCount: 16
@@ -572,7 +572,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -488034421
-  m_SortingLayer: 6
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_MaxChunkCount: 16

@@ -9,7 +9,7 @@ public class Coin : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         FindObjectOfType<GameSession>().ScoreUpdate(coinValue);
-        AudioSource.PlayClipAtPoint(coinSfx, Camera.main.transform.position);
+        AudioSource.PlayClipAtPoint(coinSfx,Camera.main.transform.position);
         Destroy(gameObject);
     }
 }

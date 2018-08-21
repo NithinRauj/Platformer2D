@@ -38,15 +38,13 @@ public class GameSession : MonoBehaviour {
         scoreText.text = pickupScore.ToString();
     }
 
-    public void ProcessPlayerDeath(bool hasDrowned)
+    public void ProcessPlayerDeath()
     {
-        if (playerLives > 1 && !hasDrowned)
+        if (playerLives > 1)
         {
             TakeLife();
         }
-        if(hasDrowned){
-            TakeLife();
-        }
+        
         else
         {
             RestartGameSession();

@@ -15,7 +15,6 @@ public class Player : MonoBehaviour {
     private int groundLayer,ladderMask;
     private float initialGravity;
     private bool isAlive = true;
-    public bool hasDrowned=false;
     private BoxCollider2D feetCollider;
     private CapsuleCollider2D bodyCollider;
   
@@ -93,20 +92,13 @@ public class Player : MonoBehaviour {
 
     void CheckIfDead()
     {
-        if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy","Hazards")))
+        if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy","Hazards","WaterTable")))
         {
             isAlive = false;
             rb.velocity = deathVelocity;
             anim.SetTrigger("DeathTrigger");
-            FindObjectOfType<GameSession>().ProcessPlayerDeath(hasDrowned);
+            FindObjectOfType<GameSession>().ProcessPlayerDeath();
         }
-        if(bodyCollider.IsTouchingLayers(LayerMask.GetMask("WaterTable")))
-        {
-           isAlive=false;
-           hasDrowned=true;
-           rb.velocity=deathVelocity;
-           anim.SetTrigger("DeathTrigger");
-           FindObjectOfType<GameSession>().ProcessPlayerDeath(hasDrowned);
-        }
+       
     }
 }
