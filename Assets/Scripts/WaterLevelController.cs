@@ -6,7 +6,7 @@ public class WaterLevelController : MonoBehaviour {
 
     private Vector2 startPosition;
     public Vector2 endPosition;
-    private float timeToReachTarget=20f;
+    public float timeToReachTarget=20f;
     private float t=0f;
 
     void Start()

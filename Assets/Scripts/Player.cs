@@ -92,7 +92,7 @@ public class Player : MonoBehaviour {
 
     void CheckIfDead()
     {
-        if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy","Hazards","WaterTable")))
+        if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy","Hazards","WaterTable")) || feetCollider.IsTouchingLayers(LayerMask.GetMask("Hazards")))
         {
             isAlive = false;
             rb.velocity = deathVelocity;
