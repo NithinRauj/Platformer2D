@@ -21,6 +21,8 @@ public class LevelPortal : MonoBehaviour {
         yield return new WaitForSecondsRealtime(levelLoadDelay);
         Time.timeScale = 1f;
         var curSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        ScenePersist scenePersistObj=FindObjectOfType<ScenePersist>();
+        Destroy(scenePersistObj);
         SceneManager.LoadScene(curSceneIndex + 1);
     }
 }

@@ -8,8 +8,10 @@ public class Coin : MonoBehaviour {
     [SerializeField] int coinValue = 20;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.GetComponent<Player>()){
         FindObjectOfType<GameSession>().ScoreUpdate(coinValue);
         AudioSource.PlayClipAtPoint(coinSfx,Camera.main.transform.position);
         Destroy(gameObject);
+        }
     }
 }

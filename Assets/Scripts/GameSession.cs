@@ -16,7 +16,7 @@ public class GameSession : MonoBehaviour {
 
     private void Start()
     {
-        curSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        //curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         livesText.text = playerLives.ToString();
         scoreText.text = pickupScore.ToString();
     }
@@ -32,6 +32,11 @@ public class GameSession : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
     }
 
+   private void Update(){
+       curSceneIndex = SceneManager.GetActiveScene().buildIndex;
+       if(SceneManager.GetActiveScene().buildIndex==0)
+         Destroy(gameObject);
+   }
     public void ScoreUpdate(int scoreToAdd)
     {
         pickupScore += scoreToAdd;
@@ -50,7 +55,6 @@ public class GameSession : MonoBehaviour {
             RestartGameSession();
         }
     }
-
     void TakeLife()
     {
         playerLives -= 1;
