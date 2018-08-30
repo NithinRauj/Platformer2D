@@ -13,6 +13,7 @@ public class GameSession : MonoBehaviour {
     [SerializeField] Text livesText, scoreText;
 
     private int curSceneIndex;
+    private bool textUIMoved=false;
 
     private void Start()
     {
@@ -36,6 +37,14 @@ public class GameSession : MonoBehaviour {
        curSceneIndex = SceneManager.GetActiveScene().buildIndex;
        if(SceneManager.GetActiveScene().buildIndex==0)
          {Destroy(gameObject);}
+       if(SceneManager.GetActiveScene().buildIndex==3 && !textUIMoved)
+       {
+        Destroy(livesText);
+        scoreText.rectTransform.Translate(-422,-285,0);  
+        textUIMoved=true;
+       }
+       else if(textUIMoved)
+       {return;}
    }
     public void ScoreUpdate(int scoreToAdd)
     {
