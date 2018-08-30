@@ -7,6 +7,7 @@ public class MenuButton : MonoBehaviour {
 
     public void LoadMenu()
     {
+       // ScenePersist[] scenePersistObjs=Find
         SceneManager.LoadScene(0);
     }
 }

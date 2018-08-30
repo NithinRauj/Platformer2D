@@ -20,9 +20,9 @@ public class LevelPortal : MonoBehaviour {
         Time.timeScale = slowMoFactor;
         yield return new WaitForSecondsRealtime(levelLoadDelay);
         Time.timeScale = 1f;
+        // ScenePersist scenePersist=FindObjectOfType<ScenePersist>();
+        // Destroy(scenePersist);
         var curSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        ScenePersist scenePersistObj=FindObjectOfType<ScenePersist>();
-        Destroy(scenePersistObj);
         SceneManager.LoadScene(curSceneIndex + 1);
     }
 }

@@ -35,7 +35,7 @@ public class GameSession : MonoBehaviour {
    private void Update(){
        curSceneIndex = SceneManager.GetActiveScene().buildIndex;
        if(SceneManager.GetActiveScene().buildIndex==0)
-         Destroy(gameObject);
+         {Destroy(gameObject);}
    }
     public void ScoreUpdate(int scoreToAdd)
     {
