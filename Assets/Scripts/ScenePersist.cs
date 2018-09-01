@@ -20,12 +20,10 @@ public class ScenePersist : MonoBehaviour {
         int numScenePersists = FindObjectsOfType<ScenePersist>().Length;
         if (numScenePersists > 1)
         {
-            Debug.Log("coins from level "+startSceneIndex+" destroyed");
             Destroy(gameObject);
         }
         else
         {
-            Debug.Log("coins from level "+startSceneIndex);
             DontDestroyOnLoad(gameObject);
         }
      }

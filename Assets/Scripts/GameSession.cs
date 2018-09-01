@@ -9,6 +9,7 @@ public class GameSession : MonoBehaviour {
     private Player player;
     [SerializeField] int playerLives = 3;
     [SerializeField] int pickupScore = 0;
+    private int finalScore=0;
 
     [SerializeField] Text livesText, scoreText;
 
@@ -17,7 +18,6 @@ public class GameSession : MonoBehaviour {
 
     private void Start()
     {
-        //curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         livesText.text = playerLives.ToString();
         scoreText.text = pickupScore.ToString();
     }
@@ -37,21 +37,26 @@ public class GameSession : MonoBehaviour {
        curSceneIndex = SceneManager.GetActiveScene().buildIndex;
        if(SceneManager.GetActiveScene().buildIndex==0)
          {Destroy(gameObject);}
-       if(SceneManager.GetActiveScene().buildIndex==3 && !textUIMoved)
+     
+       if(SceneManager.GetActiveScene().buildIndex==3)
        {
-        Destroy(livesText);
-        scoreText.rectTransform.Translate(-422,-285,0);  
-        textUIMoved=true;
+         GameObject textPlaceHolder=GameObject.FindGameObjectWithTag("ScoreTextHolder");
+         textPlaceHolder.GetComponent<Text>().text=finalScore.ToString();
+         Destroy(gameObject);
        }
-       else if(textUIMoved)
-       {return;}
    }
     public void ScoreUpdate(int scoreToAdd)
     {
         pickupScore += scoreToAdd;
+        finalScore=pickupScore;
         scoreText.text = pickupScore.ToString();
     }
-
+    public void LivesUpdate(int lifeToAdd)
+    {
+        playerLives+=1;
+        Debug.Log("life increased by 1");
+        livesText.text =playerLives.ToString();
+    }
     public void ProcessPlayerDeath()
     {
         if (playerLives > 1)
@@ -72,7 +77,6 @@ public class GameSession : MonoBehaviour {
     }
     void RestartGameSession()
     {
-        SceneManager.LoadScene(0);
-        Destroy(gameObject);
+        SceneManager.LoadScene(3);
     }
 }
