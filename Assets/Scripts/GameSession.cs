@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GameSession : MonoBehaviour {
 
     private Player player;
-    [SerializeField] int playerLives = 3;
+    private int playerLives = 4;
     [SerializeField] int pickupScore = 0;
     private int finalScore=0;
 
@@ -38,7 +38,7 @@ public class GameSession : MonoBehaviour {
        if(SceneManager.GetActiveScene().buildIndex==0)
          {Destroy(gameObject);}
      
-       if(SceneManager.GetActiveScene().buildIndex==3)
+       if(SceneManager.GetActiveScene().buildIndex==4)
        {
          GameObject textPlaceHolder=GameObject.FindGameObjectWithTag("ScoreTextHolder");
          textPlaceHolder.GetComponent<Text>().text=finalScore.ToString();
@@ -66,7 +66,7 @@ public class GameSession : MonoBehaviour {
         
         else
         {
-            RestartGameSession();
+            GoToGameOverScreen();
         }
     }
     void TakeLife()
@@ -75,8 +75,8 @@ public class GameSession : MonoBehaviour {
         SceneManager.LoadScene(curSceneIndex);
         livesText.text = playerLives.ToString();
     }
-    void RestartGameSession()
+    void GoToGameOverScreen()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
     }
 }
