@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class GameSession : MonoBehaviour {
 
@@ -15,6 +16,7 @@ public class GameSession : MonoBehaviour {
 
     private int curSceneIndex;
     private bool textUIMoved=false;
+
 
     private void Start()
     {
@@ -34,6 +36,7 @@ public class GameSession : MonoBehaviour {
     }
 
    private void Update(){
+       CursorStatus();
        curSceneIndex = SceneManager.GetActiveScene().buildIndex;
        if(SceneManager.GetActiveScene().buildIndex==0)
          {Destroy(gameObject);}
@@ -78,5 +81,13 @@ public class GameSession : MonoBehaviour {
     void GoToGameOverScreen()
     {
         SceneManager.LoadScene(4);
+    }
+    void CursorStatus()
+    {
+        curSceneIndex=SceneManager.GetActiveScene().buildIndex;
+        if(curSceneIndex==0||curSceneIndex==4)
+        {Cursor.visible=true;}
+        else
+        {Cursor.visible=false;}
     }
 }

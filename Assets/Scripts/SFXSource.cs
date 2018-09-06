@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SFXSource : MonoBehaviour {
 private AudioSource audioSrc;
 private bool clipChanged=false;
-[SerializeField] AudioClip gameOverSFX;
+[SerializeField] AudioClip gameOverSFX,backgroundSFX;
 	
 void Start()
 {
@@ -14,14 +14,14 @@ void Start()
 }
 void Awake()
 {
-    DontDestroyOnLoad(gameObject);
+     int numOfAudioSFX=GameObject.FindGameObjectsWithTag("SFXSource").Length;
+     if(numOfAudioSFX>1)
+       {Destroy(gameObject);}
+     else
+       {DontDestroyOnLoad(gameObject);}
 }
 void Update(){
-    // int numOfAudioSFX=GameObject.FindGameObjectsWithTag("SFXSource").Length;
-    // if(numOfAudioSFX>1)
-    // {Destroy(gameObject);}
-    // else
-    // {DontDestroyOnLoad(gameObject);}
+   
    if(SceneManager.GetActiveScene().buildIndex==4 && !clipChanged)
    {
       audioSrc.clip=gameOverSFX;
@@ -29,10 +29,12 @@ void Update(){
       audioSrc.Play();
       clipChanged=true;
    }
-   else if(SceneManager.GetActiveScene().buildIndex!=4)
+   else if(SceneManager.GetActiveScene().buildIndex!=4 && clipChanged)
    {
+    audioSrc.clip=backgroundSFX;
     clipChanged=false;
     audioSrc.loop=true;   
+    audioSrc.Play();
    }
 }
 }
